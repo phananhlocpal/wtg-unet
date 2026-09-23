@@ -1,0 +1,60 @@
+data:
+  root: null
+  train_images: null
+  train_masks: null
+  test_images: null
+  test_masks: null
+  image_size: [512, 512]
+  val_fraction: 0.20
+  split_seed: 2026
+
+augmentation:
+  rotate_prob: 0.25
+  rotate_degrees: 15.0
+  horizontal_flip_prob: 0.50
+  vertical_flip_prob: 0.50
+  brightness_prob: 0.25
+  brightness_range: [0.80, 1.20]
+  noise_prob: 0.15
+  noise_std: 0.01
+
+model:
+  in_channels: 1
+  encoder_channels: [64, 128, 256, 512]
+  bottleneck_channels: 1024
+  use_residual: true
+  use_wtg: true
+  wtg_use_centerline: true
+  wtg_use_radius: true
+
+loss:
+  dice_weight: 0.70
+  bce_weight: 0.30
+  centerline_weight: 1.0
+  radius_weight: 1.0
+  topology_weight: 1.0
+  use_centerline: true
+  use_radius: true
+  use_topology: true
+  positive_weight: 1.0
+  negative_weight: 1.0
+  skeleton_iterations: 10
+  radius_normalization: max_per_image
+
+optim:
+  batch_size: 4
+  epochs: 25
+  learning_rate: 0.0001
+  warmup_epochs: 5
+  warmup_start_factor: 0.20
+  plateau_patience: 10
+  plateau_factor: 0.50
+  min_learning_rate: 0.00000001
+  weight_decay: 0.0
+  num_workers: 0
+  amp: false
+  seeds: [1, 2, 3]
+
+evaluation:
+  threshold: 0.50
+  save_examples: 4

@@ -1,0 +1,55 @@
+base_config: configs/fives.yaml
+
+variants:
+  - name: unet_region
+    overrides:
+      model:
+        use_residual: false
+        use_wtg: false
+      loss:
+        use_centerline: false
+        use_radius: false
+        use_topology: false
+  - name: residual_region
+    overrides:
+      model:
+        use_residual: true
+        use_wtg: false
+      loss:
+        use_centerline: false
+        use_radius: false
+        use_topology: false
+  - name: wtg_centerline
+    overrides:
+      model:
+        use_residual: true
+        use_wtg: true
+        wtg_use_centerline: true
+        wtg_use_radius: false
+      loss:
+        use_centerline: true
+        use_radius: false
+        use_topology: false
+  - name: wtg_centerline_width
+    overrides:
+      model:
+        use_residual: true
+        use_wtg: true
+        wtg_use_centerline: true
+        wtg_use_radius: true
+      loss:
+        use_centerline: true
+        use_radius: true
+        use_topology: false
+  - name: wtg_full
+    overrides:
+      model:
+        use_residual: true
+        use_wtg: true
+        wtg_use_centerline: true
+        wtg_use_radius: true
+      loss:
+        use_centerline: true
+        use_radius: true
+        use_topology: true
+
